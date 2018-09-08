@@ -1,8 +1,8 @@
-package main;
+package com.dzoum.pow.main;
 
 import java.awt.image.BufferedImage;
 
-import utils.Config;
+import com.dzoum.pow.utils.Config;
 
 public class Application {
 	

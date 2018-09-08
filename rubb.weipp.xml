@@ -15,3 +15,15 @@
       </plugin>
     </plugins>
   </build>
+
+
+      int v = screen.getRGB(0, 0);
+    if(v <= 0) dv = -dv;
+    if(v >= 255) dv= -dv;
+    v += dv;
+    
+    for(int x = 0; x < config.getGameWidth(); ++x) {
+      for(int y = 0; y < config.getGameHeight(); ++y) {
+        screen.setRGB(x, y, v);
+      }
+    }

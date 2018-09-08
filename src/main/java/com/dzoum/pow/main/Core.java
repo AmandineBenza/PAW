@@ -1,4 +1,4 @@
-package main;
+package com.dzoum.pow.main;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,8 +10,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-import graphics.Window;
-import utils.Config;
+import com.dzoum.pow.graphics.Window;
+import com.dzoum.pow.utils.Config;
 
 public class Core extends JPanel implements Runnable, KeyListener {
 
@@ -70,7 +70,7 @@ public class Core extends JPanel implements Runnable, KeyListener {
 		@SuppressWarnings("unused")
 		int ticks = 0;
 		long lastTimer1 = System.currentTimeMillis();
-
+		
 		while (running) {
 			long now = System.nanoTime();
 			unprocessed += (now - lastTime) / nsPerTick;
@@ -89,7 +89,7 @@ public class Core extends JPanel implements Runnable, KeyListener {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-
+			
 			if (shouldRender) {
 				frames++;
 				render();
@@ -97,30 +97,20 @@ public class Core extends JPanel implements Runnable, KeyListener {
 			}
 
 			if (System.currentTimeMillis() - lastTimer1 > 1000) {
+				window.setTitle(frames + " fps");
 				lastTimer1 += 1000;
 				frames = 0;
 				ticks = 0;
-				window.setTitle(frames + " fps");
 			}
 		}
 	}
 	
-	int dv = -1;
 	public void update() {
-		int v = screen.getRGB(0, 0);
-		if(v <= 0) dv = -dv;
-		if(v >= 255) dv= -dv;
-		
-		for(int x = 0; x < config.getGameWidth(); ++x) {
-			for(int y = 0; y < config.getGameHeight(); ++y) {
-				screen.setRGB(x, y, v);
-			}
-		}
+
 	}
 	
 	public void render() {
 		renderWhiteScreen();
-		renderToScreen();
 	}
 	
 	public void start() {

@@ -1,9 +1,9 @@
-package graphics;
+package com.dzoum.pow.graphics;
 
 import javax.swing.JFrame;
 
-import main.Core;
-import utils.Config;
+import com.dzoum.pow.main.Core;
+import com.dzoum.pow.utils.Config;
 
 public class Window {
 

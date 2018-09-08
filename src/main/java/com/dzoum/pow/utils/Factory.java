@@ -1,4 +1,4 @@
-package utils;
+package com.dzoum.pow.utils;
 
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.factory.Lists;
@@ -13,6 +13,7 @@ public class Factory {
 		return Lists.mutable.empty();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static <T> MutableList<T> newList(T... of){ // Create new list of given parameters
 		return Lists.mutable.of(of);
 	}

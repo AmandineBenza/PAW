@@ -1,4 +1,4 @@
-package utils;
+package com.dzoum.pow.utils;
 
 public class Config {
 	
