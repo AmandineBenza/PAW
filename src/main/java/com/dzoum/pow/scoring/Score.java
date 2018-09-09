@@ -8,6 +8,10 @@ public class Score {
 		this.value = 0;
 	}
 	
+	public Score(long value) {
+		this.value = value;
+	}
+	
 	public long get() {
 		return this.value;
 	}

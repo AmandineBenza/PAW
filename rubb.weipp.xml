@@ -27,3 +27,11 @@
         screen.setRGB(x, y, v);
       }
     }
+
+      public void increaseScore(long val) {
+    score.increase(val);  
+  }
+  
+  public void decreaseScore(long val) {
+    score.decrease(val);
+  }

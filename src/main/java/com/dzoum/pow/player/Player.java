@@ -1,21 +1,34 @@
 package com.dzoum.pow.player;
 
+import com.dzoum.pow.graphics.Screen;
 import com.dzoum.pow.scoring.Score;
 
 public class Player {
 	
-	private Score score;
+	private Score globalScore;
+	private Score onClickScore;
+	private Score passiveScore;
 	
 	public Player() {	
-		score = new Score();	
+		this.globalScore = new Score();	
+		this.onClickScore = new Score(1);	
+		this.passiveScore = new Score();
+	}
+
+	public Score getGlobalScore() {
+		return globalScore;
+	}
+
+	public Score getOnClickScore() {
+		return onClickScore;
+	}
+
+	public Score getPassiveScore() {
+		return passiveScore;
 	}
 	
-	public void increaseScore(long val) {
-		score.increase(val);	
-	}
-	
-	public void decreaseScore(long val) {
-		score.decrease(val);
+	public void render(Screen screen, int x, int y) {
+		
 	}
 
 }

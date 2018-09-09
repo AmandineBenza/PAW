@@ -1,5 +1,7 @@
 package com.dzoum.pow.utils;
 
+import com.dzoum.pow.graphics.Screen;
+
 public class TickCounter {
 	
 	private int ticks;
@@ -33,6 +35,15 @@ public class TickCounter {
 	
 	public boolean isRunning() {
 		return running; 
+	}
+	
+	public void reset() {
+		this.ticks = 0;
+		this.running = false;
+	}
+	
+	public void render(Screen screen, int x, int y) {
+		
 	}
 	
 }

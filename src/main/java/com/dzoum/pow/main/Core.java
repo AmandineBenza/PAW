@@ -2,14 +2,13 @@ package com.dzoum.pow.main;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
+import com.dzoum.pow.graphics.Screen;
 import com.dzoum.pow.graphics.Window;
 import com.dzoum.pow.utils.Config;
 
@@ -26,14 +25,18 @@ public class Core extends JPanel implements Runnable, KeyListener {
 	
 	// graphics
 	private Window window;
-	private BufferedImage screen;
-	private Graphics2D g;
+	private Screen screen;
+	
+	// world
+	private World world;
 	
 	public Core (Config config) {
 		super();
 		this.config = config;
 		this.running = false;
 		this.window = new Window(this, this.config);
+		this.screen = new Screen(this, this.config);
+		this.world = new World(this.config, this.screen);
 		this.init();
 	}
 	
@@ -41,8 +44,6 @@ public class Core extends JPanel implements Runnable, KeyListener {
 		setPreferredSize(new Dimension(config.getGameWidth() * config.getGameScale(), config.getGameHeight() * config.getGameScale()));
 		setFocusable(true);
 		requestFocus();
-		this.screen = new BufferedImage(config.getGameWidth(), config.getGameHeight(), config.getImageType());
-		this.g = (Graphics2D) this.screen.getGraphics();
 	}
 
 	public void keyTyped(KeyEvent e) {
@@ -93,7 +94,6 @@ public class Core extends JPanel implements Runnable, KeyListener {
 			if (shouldRender) {
 				frames++;
 				render();
-				renderToScreen();
 			}
 
 			if (System.currentTimeMillis() - lastTimer1 > 1000) {
@@ -106,11 +106,13 @@ public class Core extends JPanel implements Runnable, KeyListener {
 	}
 	
 	public void update() {
-
+		world.update();
 	}
 	
 	public void render() {
-		renderWhiteScreen();
+		screen.colorize(Color.PINK);
+		world.render();
+		screen.render();
 	}
 	
 	public void start() {
@@ -129,17 +131,6 @@ public class Core extends JPanel implements Runnable, KeyListener {
 		
 		window = null;
 		running = false; 
-	}
-	
-	private void renderWhiteScreen(){
-		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, config.getGameWidth(), config.getGameHeight());
-	}
-	
-	public void renderToScreen(){
-		Graphics g2 = getGraphics();
-		g2.drawImage(screen, 0, 0, config.getGameWidth() * config.getGameScale(), config.getGameHeight() * config.getGameScale(), null);
-		g2.dispose();
 	}
 	
 	@Override
