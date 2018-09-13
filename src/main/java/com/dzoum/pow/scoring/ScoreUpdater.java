@@ -3,6 +3,7 @@ package com.dzoum.pow.scoring;
 import com.dzoum.pow.player.Player;
 import com.dzoum.pow.utils.Config;
 import com.dzoum.pow.utils.TickCounter;
+import com.dzoum.pow.utils.Utils;
 
 public class ScoreUpdater {
 	
@@ -30,8 +31,10 @@ public class ScoreUpdater {
 	}
 	
 	public void update() {
+		passiveScoreUpdateTimer.update();
 		if(!passiveScoreUpdateTimer.isRunning()) {
 			player.getGlobalScore().increase(player.getPassiveScore().get());
+			Utils.println(player.getGlobalScore().get());
 			passiveScoreUpdateTimer.reset();
 			passiveScoreUpdateTimer.start();
 		}

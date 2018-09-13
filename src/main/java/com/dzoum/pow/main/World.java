@@ -24,6 +24,7 @@ public class World {
 		this.gameTimer = new TickCounter(config.getGameTimerDelay());
 		this.scoreUpdater = new ScoreUpdater(config, player);
 		this.shop = new Shop(config, screen, scoreUpdater);
+		start();
 	}
 	
 	public void start() {

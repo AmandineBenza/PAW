@@ -10,5 +10,9 @@ public class Utils {
 		System.out.println(object);
 	}
 	
+	public static String texturePath(String fileName) {
+		return "src/main/resources/textures/" + fileName;
+	}
+	
 	
 }
